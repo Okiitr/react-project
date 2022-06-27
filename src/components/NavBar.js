@@ -18,6 +18,27 @@ export default class NavBar extends Component {
                         {/*  <li className="nav-item">
                             <a className="nav-link" href="/">{props.about}</a>
                         </li> */}
+                          <li className="nav-item">
+                            <a className="nav-link active" aria-current="page" href="/"> business</a>
+                        </li>
+                          <li className="nav-item">
+                            <a className="nav-link active" aria-current="page" href="/"> entertainment</a>
+                        </li>
+                          <li className="nav-item">
+                            <a className="nav-link active" aria-current="page" href="/"> general</a>
+                        </li>
+                          <li className="nav-item">
+                            <a className="nav-link active" aria-current="page" href="/"> health</a>
+                        </li>
+                         <li className="nav-item">
+                            <a className="nav-link active" aria-current="page" href="/">  science</a>
+                        </li>
+                          <li className="nav-item">
+                            <a className="nav-link active" aria-current="page" href="/"> sports</a>
+                        </li>
+                         <li className="nav-item">
+                            <a className="nav-link active" aria-current="page" href="/"> technology</a>
+                        </li>
                         {/* <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Dropdown

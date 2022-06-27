@@ -6,12 +6,12 @@ export class NewsItem extends Component {
         let {title,desc,imageUrl,newsUrl}=this.props
         return (
             <div>
-                <div className="card" style={{width: "18rem"} }>
+                <div className="card"  >
                    <img src={imageUrl} className="card-img-top" alt="..."/>
                         <div className="card-body">
                             <h5 className="card-title">{title}...</h5>
                             <p className="card-text">{desc}...</p>
-                            <a href={newsUrl} rel="_blank" className="btn btn-sm btn-primary">Read More</a>
+                            <a href={newsUrl} className="btn btn-sm btn-primary">Read More</a>
                         </div>
                 </div>
             </div>
