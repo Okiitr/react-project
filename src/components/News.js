@@ -47,32 +47,58 @@ export class News extends Component {
     constructor() {
         super();
         this.state={
-            articles:this.articles,
-            loading:false
+            articles:[],
+            loading:false,
+            page:1
     }
 }
     async componentDidMount(){
-        let url="https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=e4ad0235e80d46a4b09f9a6ded9e096e";
+        let url=`https://newsapi.org/v2/top-headlines?country=us&apiKey=e4ad0235e80d46a4b09f9a6ded9e096e&page=1&pageSize=9`;
         let data= await fetch(url);
         let parsedData= await data.json();
-        console.log(parsedData)
-        this.setState({articles:parsedData.articles});
+        console.log(parsedData.totalResults)
+        this.setState({articles:parsedData.articles, totalResult:parsedData.totalResults});
+
+    }
+    handlePrevClick = async ()=>{
+        let url=`https://newsapi.org/v2/top-headlines?country=us&apiKey=e4ad0235e80d46a4b09f9a6ded9e096e&page=${this.state.page-1}&pageSize=9`;
+        let data= await fetch(url);
+        let parsedData= await data.json();
+        this.setState({
+            page:this.state.page-1,
+            articles:parsedData.articles
+        })
+
+    }
+    handleNextClick = async ()=>{
+        if (this.state.page+1  > Math.ceil(this.state.totalResult/9)){
+
+        }
+        else{
+            let url=`https://newsapi.org/v2/top-headlines?country=us&apiKey=e4ad0235e80d46a4b09f9a6ded9e096e&page=${this.state.page+1}&pageSize=9`;
+            let data= await fetch(url);
+            let parsedData= await data.json();
+            this.setState({
+                page:this.state.page+1,
+                articles:parsedData.articles
+            })}
 
     }
   render() {
     return (
       <div className='container my-3'>
-        <h2>Top Heading </h2>
+        <h2 className='text-center'>Top Heading </h2>
         <div className='row'>
         {this.state.articles.map((element)=>{
             return <div className='col-md-4' key={element.url} >
-            <NewsItem  title={element.title.slice(0,45)} desc={element.description.slice(0,88)} imageUrl={element.urlToImage} newsUrl={element.url}/>
+            <NewsItem  title={element.title} desc={element.description} imageUrl={element.urlToImage} newsUrl={element.url}/>
           </div>
 
         })}
-        
-            
-         
+        </div>
+        <div className='container d-flex justify-content-between my-3'>
+        <button disabled={this.state.page<=1} type="button" className="btn btn-dark" onClick={this.handlePrevClick}>&larr; Previous</button>
+        <button disabled={this.state.page+1  > Math.ceil(this.state.totalResult/9)}type="button" className="btn btn-dark" onClick={this.handleNextClick}>Next &rarr;</button>
         </div>
       </div>
     )
