@@ -1,4 +1,10 @@
 import './App.css';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 import React, { Component } from 'react'
 import NavBar from './components/NavBar';
@@ -8,8 +14,20 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <NavBar/>
-        <News pageSize={6} country="in" category="sports"/>
+        <Router>
+          <NavBar />
+          <News pageSize={6} country="in" category="sports" />
+          <Switch>
+            <Route exact path="/"><News key="general" pageSize={6} country="in" category="general" /></Route>
+            <Route exact path="/home"><News key="general" pageSize={6} country="in" category="general" /></Route>
+            <Route exact path="/business"><News key="business" pageSize={6} country="in" category="business" /></Route>
+            <Route exact path="/entertainment"><News key=" ntertainment" pageSize={6} country="in" category="entertainment" /></Route>
+            <Route exact path="/health"><News key="health" pageSize={6} country="in" category="health" /></Route>
+            <Route exact path="/science"><News key="science" pageSize={6} country="in" category="science" /></Route>
+            <Route exact path="/sports"><News key="sports" pageSize={6} country="in" category="sports" /></Route>
+            <Route exact path="/technology"><News key="technology" pageSize={6} country="in" category="technology" /></Route>
+          </Switch>
+        </Router>
       </div>
     )
   }
